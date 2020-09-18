@@ -50,31 +50,31 @@ GIPminID = Diff_List.index(GIPmin) + 1
 # Create a variant for the report header
 FAna = ('Financial Analysis')
 
-# Set variant and integer for data separator 
-P_Break = "-"
-PB_Repeat = 50
-
 # Set variants for each results line
 R1_Line = (f"Total Months: {lnegth_Mths}")
 R2_Line = (f"Total: ${Net_Amt}")
 R3_Line = (f"Average Change: ${average1:.2f}")
 R4_Line = (f"Greatest Increase in Profits: {Date[GIPmaxID]} (${GIPmax})")
 R5_Line = (f"Greatest Decrease in Profits: {Date[GIPminID]} (${GIPmin})")
+RB_PgBk = (str("-")*50)
 
 # Assign results to a list
 Rpt_Summary = [R1_Line,R2_Line,R3_Line,R4_Line,R5_Line]
+
+# Set variant for data '---' separator / (i.e. string x longest line in list)
+RB_PgBk = (str("-") * len(sorted(Rpt_Summary, key=len)[-1]))
 
 # Print Resutls to "Budget_Analysis" File in the Analysis Folder
 with open(output_file, 'w') as csvfile2:
     csvwriter = csv.writer(csvfile2, delimiter='\n')
     csvfile2.write(f'{FAna}\n\n')
-    csvfile2.write(f'{str(P_Break)*PB_Repeat}\n\n')
+    csvfile2.write(f'{RB_PgBk}\n\n')
     csvwriter.writerow(Rpt_Summary)
-    csvfile2.write(f'{str(P_Break)*PB_Repeat}')
+    csvfile2.write(f'{RB_PgBk}')
 
 # Print Results Summary to Terminal
 print(f'\n\n{str(FAna)}\n')
-print(str(P_Break)*PB_Repeat)
+print(f'{RB_PgBk}')
 for row in Rpt_Summary:
     print(row)
-print(f'{str(P_Break)*PB_Repeat}\n\n')
+print(f'{RB_PgBk}\n\n')
