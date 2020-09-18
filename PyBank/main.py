@@ -17,7 +17,7 @@ with open(csvpath) as csvfile:
         Date.append(str(row[0]))
         Amts.append(int(row[1]))
 
-# Calculat the 'change in periods' and assign amounts to new list
+# Calculate the 'change in periods' and assign amounts to new list
 Diff_List=[]
 count=0
 for num in Amts:
@@ -34,7 +34,7 @@ average1 = sum(Diff_List)/len(Diff_List)
 # Count the number of periods
 lnegth_Mths = len(Date)
 
-# Calculate period total
+# Calculate amount total
 Net_Amt = sum(Amts)
 
 # Calculate 'change in periods' total
@@ -61,10 +61,10 @@ RB_PgBk = (str("-")*50)
 # Assign results to a list
 Rpt_Summary = [R1_Line,R2_Line,R3_Line,R4_Line,R5_Line]
 
-# Set variant for data '---' separator / (i.e. string x longest line in list)
+# Set variant for results line '---' separator / (i.e. string times the length of the longest line in list)
 RB_PgBk = (str("-") * len(sorted(Rpt_Summary, key=len)[-1]))
 
-# Print Resutls to "Budget_Analysis" File in the Analysis Folder
+# Print Results to "Budget_Analysis" File in the Analysis Folder
 with open(output_file, 'w') as csvfile2:
     csvwriter = csv.writer(csvfile2, delimiter='\n')
     csvfile2.write(f'{FAna}\n\n')
